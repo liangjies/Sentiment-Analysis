@@ -23,13 +23,13 @@ class LSTM(nn.Module):
     def __init__(self, opts, vocab, label_vocab):
         super(LSTM, self).__init__()
 
-        random.seed(opts.seed)
-        torch.manual_seed(opts.seed)
-        torch.cuda.manual_seed(opts.seed)
+        random.seed(opts.seed)              #设置随机数种子
+        torch.manual_seed(opts.seed)        #为CPU设置种子
+        torch.cuda.manual_seed(opts.seed)   #为GPU设置种子
 
-        self.embed_dim = opts.embed_size
-        self.word_num = vocab.m_size
-        self.pre_embed_path = opts.pre_embed_path
+        self.embed_dim = opts.embed_size                       #词向量的维度
+        self.word_num = vocab.m_size                           #词的个数
+        self.pre_embed_path = opts.pre_embed_path              #词向量文件路径
         self.string2id = vocab.string2id
         self.embed_uniform_init = opts.embed_uniform_init
         self.label_num = label_vocab.m_size
